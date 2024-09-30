@@ -39,5 +39,28 @@ namespace ShapeLibrary;
 
         return new Colour(newRed, newGreen, newBlue);
     }
+
+
+    public static Colour operator -(Colour a, Colour b)
+    {
+        int newRed = a.red - b.red;
+        int newGreen = a.green - b.green;
+        int newBlue = a.blue - b.blue;
+
+        if (newRed < 0)
+        {
+            newRed = 0;
+        }
+        if (newGreen < 0)
+        {
+            newGreen = 0;
+        }
+        if (newBlue < 0)
+        {
+            newBlue = 0;
+        }
+
+        return new Colour(newRed, newGreen, newBlue);
+    }
 }
 
