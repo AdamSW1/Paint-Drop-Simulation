@@ -5,31 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ShapeLibrary;
-    public struct Colour
+public struct Colour
+{
+    public int Red { get; }
+    public int Green { get; }
+    public int Blue { get; }
+
+    public Colour(int red, int green, int blue)
     {
-        public int Red { get; }
-        public int Green { get; } 
-        public int Blue { get; }
-
-        public Colour(int red, int green, int blue)
+        if (red < 0 || red > 255)
         {
-            if ( red < 0 || red > 255)
-            {
-                throw new ArgumentException("Colour 'red' cannot be less than 0 or greater than 255");
-            }
-            if (green < 0 || green > 255)
-            {
-                throw new ArgumentException("Colour 'green' cannot be less than 0 or greater than 255");
-            }
-            if (blue < 0 || blue > 255)
-            {
-                throw new ArgumentException("Colour 'blue' cannot be less than 0 or greater than 255");
-            }
-
-            this.Red = red;
-            this.Green = green;
-            this.Blue = blue;
+            throw new ArgumentException("Colour 'red' cannot be less than 0 or greater than 255");
         }
+        if (green < 0 || green > 255)
+        {
+            throw new ArgumentException("Colour 'green' cannot be less than 0 or greater than 255");
+        }
+        if (blue < 0 || blue > 255)
+        {
+            throw new ArgumentException("Colour 'blue' cannot be less than 0 or greater than 255");
+        }
+
+        this.Red = red;
+        this.Green = green;
+        this.Blue = blue;
+    }
 
     public static Colour operator +(Colour a, Colour b)
     {
@@ -72,6 +72,15 @@ namespace ShapeLibrary;
         {
             newBlue = 0;
         }
+
+        return new Colour(newRed, newGreen, newBlue);
+    }
+
+    public static Colour operator *(Colour a, int num)
+    {
+        int newRed = a.Red * num;
+        int newGreen = a.Green * num;
+        int newBlue = a.Blue * num;
 
         return new Colour(newRed, newGreen, newBlue);
     }
