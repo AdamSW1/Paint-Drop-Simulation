@@ -112,6 +112,15 @@ public struct Colour
         return new Colour(newRed, newGreen, newBlue);
     }
 
+    public static bool operator ==(Colour a, Colour b)
+    {
+        return a.Red == b.Red && a.Green == b.Green && a.Blue == b.Blue;
+    }
+    public static bool operator !=(Colour a, Colour b)
+    {
+        return a.Red == b.Red && a.Green == b.Green && a.Blue == b.Blue;
+    }
+
 
 }
 
