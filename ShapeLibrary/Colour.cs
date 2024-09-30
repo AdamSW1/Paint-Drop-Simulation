@@ -7,22 +7,35 @@ using System.Threading.Tasks;
 namespace ShapeLibrary;
     public struct Colour
     {
-        public int red { get; }
-        public int green { get; } 
-        public int blue { get; }
+        public int Red { get; }
+        public int Green { get; } 
+        public int Blue { get; }
 
         public Colour(int red, int green, int blue)
         {
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
+            if ( red < 0 || red > 255)
+            {
+                throw new ArgumentException("Colour 'red' cannot be less than 0 or greater than 255");
+            }
+            if (green < 0 || green > 255)
+            {
+                throw new ArgumentException("Colour 'green' cannot be less than 0 or greater than 255");
+            }
+            if (blue < 0 || blue > 255)
+            {
+                throw new ArgumentException("Colour 'blue' cannot be less than 0 or greater than 255");
+            }
+
+            this.Red = red;
+            this.Green = green;
+            this.Blue = blue;
         }
 
     public static Colour operator +(Colour a, Colour b)
     {
-        int newRed = a.red + b.red;
-        int newGreen = a.green + b.green;
-        int newBlue = a.blue + b.blue;
+        int newRed = a.Red + b.Red;
+        int newGreen = a.Green + b.Green;
+        int newBlue = a.Blue + b.Blue;
 
         if (newRed > 255)
         {
@@ -43,9 +56,9 @@ namespace ShapeLibrary;
 
     public static Colour operator -(Colour a, Colour b)
     {
-        int newRed = a.red - b.red;
-        int newGreen = a.green - b.green;
-        int newBlue = a.blue - b.blue;
+        int newRed = a.Red - b.Red;
+        int newGreen = a.Green - b.Green;
+        int newBlue = a.Blue - b.Blue;
 
         if (newRed < 0)
         {
