@@ -78,11 +78,40 @@ public struct Colour
 
     public static Colour operator *(Colour a, int num)
     {
+
         int newRed = a.Red * num;
         int newGreen = a.Green * num;
         int newBlue = a.Blue * num;
 
+        if (newRed < 0)
+        {
+            newRed = 0;
+        }
+        if (newGreen < 0)
+        {
+            newGreen = 0;
+        }
+        if (newBlue < 0)
+        {
+            newBlue = 0;
+        }
+
+        if(newRed > 255)
+        {
+            newRed = 255;
+        }
+        if( newGreen  > 255)
+        {
+            newGreen = 255;
+        }
+        if( newBlue > 255)
+        {
+            newBlue = 255;
+        }
+
         return new Colour(newRed, newGreen, newBlue);
     }
+
+
 }
 
