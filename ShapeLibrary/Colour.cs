@@ -121,6 +121,11 @@ public struct Colour
         return a.Red == b.Red && a.Green == b.Green && a.Blue == b.Blue;
     }
 
+    public override string ToString()
+    {
+        return $"{this.Red}, {this.Green}, {this.Blue}";
+    }
+
 
 }
 
