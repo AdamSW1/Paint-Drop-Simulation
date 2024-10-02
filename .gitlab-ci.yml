@@ -14,7 +14,7 @@ build-release:
   stage: build
   script:
   - cd PaintDrops
-  - dotnet publish --no-self-contained -o "Game" -c release
+  - dotnet publish --no-self-contained -o "Game" -c release -r win-x64
   - tar -cf ../Game.tar Game
   artifacts:
     when: on_success
