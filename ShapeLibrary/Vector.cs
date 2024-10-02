@@ -72,6 +72,10 @@ public class Vector
 
     }
 
+    public override string ToString()
+    {
+        return $"({this.X },{ this.Y})";
+    }
 
 }
 
