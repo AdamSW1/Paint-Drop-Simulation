@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShapeLibrary;
 
-public class Vector
+public struct Vector
 {
     public float X { get; }
     public float Y { get; }
@@ -49,10 +49,6 @@ public class Vector
 
     public static float Magnitude(Vector v)
     {
-        if (v == null)
-        {
-            throw new ArgumentNullException(nameof(v), "vector cannot be null");
-        }
         float squaredX = (float)Math.Pow(v.X, 2);
         float squaredY = (float)Math.Pow(v.Y, 2);
 
@@ -61,15 +57,9 @@ public class Vector
 
     public static Vector Normalize(Vector v)
     {
-        if (v == null)
-        {
-            throw new ArgumentNullException(nameof(v), "Vector cannot be null");
-        }
-
         float mag = Magnitude(v);
 
         return new Vector(v / mag);
-
     }
 
     public override string ToString()
