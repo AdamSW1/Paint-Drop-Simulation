@@ -38,6 +38,12 @@ public class Vector
     }
 
     public static Vector operator /(Vector v1, int scalar){
+
+        if (scalar == 0)
+        {
+            throw new ArgumentException("Cannot divide by zero");
+        }
+
         return new Vector(v1.X / scalar, v1.Y / scalar);
     }
 
