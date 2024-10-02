@@ -124,5 +124,19 @@ public class VectorTests
         Vector divided = v / scalar;
     }
 
+    [TestMethod]
+    [DataRow(1, 2)]
+    [DataRow(-1, 2)]
+    [DataRow(1, -2)]
+    [DataRow(0, 0)]
+    public void test_magnitude(float vx, float vy)
+    {
+        Vector v = new Vector(vx, vy);
+
+        float expectedMag = (float)Math.Sqrt(Math.Pow(vx, 2) + Math.Pow(vy, 2)); 
+        float actualMag = Vector.Magnitude(v);
+
+        Assert.AreEqual(expectedMag, actualMag, 0.0001);
+    }
 }
 
