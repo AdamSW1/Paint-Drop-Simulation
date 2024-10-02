@@ -41,6 +41,19 @@ public class Vector
         return new Vector(v1.X / scalar, v1.Y / scalar);
     }
 
+    public static float Magnitude(Vector v)
+    {
+        if (v == null)
+        {
+            throw new ArgumentNullException("vector cannot be null");
+        }
+        float squaredX = (float)Math.Pow(v.X, 2);
+        float squaredY = (float)Math.Pow(v.Y, 2);
+
+        return (float)Math.Sqrt(squaredX + squaredY);
+
+    }
+
 
 }
 
