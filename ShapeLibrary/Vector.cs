@@ -32,12 +32,12 @@ public class Vector
         return new Vector(v1.X - v2.X, v1.Y - v2.Y);
     }
 
-    public static Vector operator *(Vector v1, int scalar)
+    public static Vector operator *(Vector v1, float scalar)
     {
         return new Vector(v1.X * scalar, v1.Y * scalar);
     }
 
-    public static Vector operator /(Vector v1, int scalar){
+    public static Vector operator /(Vector v1, float scalar){
 
         if (scalar == 0)
         {
