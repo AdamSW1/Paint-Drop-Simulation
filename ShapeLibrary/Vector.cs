@@ -8,8 +8,8 @@ namespace ShapeLibrary;
 
 public class Vector
 {
-    public float X {get;}
-    public float Y {get;}
+    public float X { get; }
+    public float Y { get; }
 
     public Vector(float x, float y) {
         this.X = x;
@@ -35,6 +35,10 @@ public class Vector
     public static Vector operator *(Vector v1, int scalar)
     {
         return new Vector(v1.X * scalar, v1.Y * scalar);
+    }
+
+    public static Vector operator /(Vector v1, int scalar){
+        return new Vector(v1.X / scalar, v1.Y / scalar);
     }
 
 
