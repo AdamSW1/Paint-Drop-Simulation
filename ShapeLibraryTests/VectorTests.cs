@@ -91,7 +91,38 @@ public class VectorTests
         Assert.IsNotNull (multiplied);
         Assert.AreEqual(expectedX, multiplied.X);
         Assert.AreEqual(expectedY, multiplied.Y);
-
     }
+
+    [TestMethod]
+    [DataRow(4, 6, 2)]
+    [DataRow(-4, 6, 3)]
+    [DataRow(4, -6, 3)]
+    [DataRow(4, 6, -3)]
+    public void Test_Division_noZeros(float vx, float vy, float scalar){ 
+        Vector v = new Vector(vx, vy);
+        float expectedX = vx / scalar;
+        float expectedY = vy / scalar;
+
+        Vector divided = v / scalar;
+
+        Assert.IsNotNull (divided);
+        Assert.AreEqual(expectedX, divided.X, 0.0001);
+        Assert.AreEqual(expectedY, divided.Y, 0.0001);
+    }
+
+    [TestMethod]
+    [DataRow(4, 6, 0)]
+    [DataRow(-4, 6, 0)]
+    [DataRow(4, -6, 0)]
+    [ExpectedException(typeof(ArgumentException))]
+    public void test_Division_throwsArgumentException(float vx, float vy, float scalar)
+    {
+        Vector v = new Vector(vx, vy);
+        float expectedX = vx / scalar;
+        float expectedY = vy / scalar;
+
+        Vector divided = v / scalar;
+    }
+
 }
 
