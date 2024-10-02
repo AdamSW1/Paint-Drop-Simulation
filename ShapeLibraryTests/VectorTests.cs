@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ShapeLibrary;
+
 
 namespace ShapeLibraryTests;
-    [TestClass]
-    class VectorTests
-    {
+
+[TestClass]
+public class VectorTests
+{
+    [TestMethod]
+    public void Test_standardConstructor() {
+        try
+        {
+            Vector v = new(1, 2);
+        }
+        catch
+        {
+            Assert.Fail();
+        }
     }
+
+}
 
