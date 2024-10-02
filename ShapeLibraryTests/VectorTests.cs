@@ -72,5 +72,26 @@ public class VectorTests
         Assert.AreEqual(expectedX, added.X);
         Assert.AreEqual(expectedY, added.Y);
     }
+
+    [TestMethod]
+    [DataRow(2, 3, 4)]
+    [DataRow(-2, 3, 4)]
+    [DataRow(2, -3, 4)]
+    [DataRow(2, 3, -4)]
+    [DataRow(-2, 3, -4)]
+    [DataRow(2, -3, -4)]
+    public void Test_Multiplication(float vX, float vY, float scalar)
+    {
+        Vector v = new Vector(vX, vY);
+        float expectedX = vX * scalar;
+        float expectedY = vY * scalar;
+
+        Vector multiplied = v * scalar;
+
+        Assert.IsNotNull (multiplied);
+        Assert.AreEqual(expectedX, multiplied.X);
+        Assert.AreEqual(expectedY, multiplied.Y);
+
+    }
 }
 
