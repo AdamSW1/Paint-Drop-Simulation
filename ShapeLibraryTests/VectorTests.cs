@@ -138,5 +138,29 @@ public class VectorTests
 
         Assert.AreEqual(expectedMag, actualMag, 0.0001);
     }
+
+    [TestMethod]
+    [DataRow(1, 2)]
+    [DataRow(-1, 2)]
+    [DataRow(1, -2)]
+    public void test_normalize_validArguments(float vx, float vy)
+    {
+        Vector v = new Vector(vx, vy);
+        float expectedMag = 1;
+
+        Vector normalized = Vector.Normalize(v);
+        float actualMag = Vector.Magnitude(normalized);
+
+        Assert.IsNotNull(normalized);
+        Assert.AreEqual(expectedMag, actualMag, 0.0001);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void test_normalize_DivideByZero()
+    {
+        Vector v = new Vector(0, 0);
+        Vector.Normalize(v);
+    }
 }
 
