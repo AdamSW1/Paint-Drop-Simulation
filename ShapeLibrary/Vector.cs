@@ -51,7 +51,7 @@ public class Vector
     {
         if (v == null)
         {
-            throw new ArgumentNullException("vector cannot be null");
+            throw new ArgumentNullException(nameof(v), "vector cannot be null");
         }
         float squaredX = (float)Math.Pow(v.X, 2);
         float squaredY = (float)Math.Pow(v.Y, 2);
