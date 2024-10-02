@@ -16,5 +16,11 @@ public class Vector
         this.Y = y;
     }
 
+    public Vector(Vector v)
+    {
+        this.X = v.X;
+        this.Y = v.Y;
+    }
+
 }
 
