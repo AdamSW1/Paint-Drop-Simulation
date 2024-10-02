@@ -32,6 +32,11 @@ public class Vector
         return new Vector(v1.X - v2.X, v1.Y - v2.Y);
     }
 
+    public static Vector operator *(Vector v1, int scalar)
+    {
+        return new Vector(v1.X * scalar, v1.Y * scalar);
+    }
+
 
 }
 
