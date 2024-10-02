@@ -57,6 +57,18 @@ public class Vector
         float squaredY = (float)Math.Pow(v.Y, 2);
 
         return (float)Math.Sqrt(squaredX + squaredY);
+    }
+
+    public static Vector Normalize(Vector v)
+    {
+        if (v == null)
+        {
+            throw new ArgumentNullException(nameof(v), "Vector cannot be null");
+        }
+
+        float mag = Magnitude(v);
+
+        return new Vector(v / mag);
 
     }
 
