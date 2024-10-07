@@ -32,7 +32,6 @@ public class Rectangle : IRectangle
                 _vertices[1] = vertice2;
                 _vertices[2] = vertice3;
                 _vertices[3] = vertice4;
-                return _vertices;
             }
             return _vertices;
         }
