@@ -25,11 +25,14 @@ public class CircleTests
     }
 
     [TestMethod]
-    [DataRow(-10, 10, 10)]
-    [DataRow(10, -10, 10)]
-    [DataRow(10, 10, -10)]
     [ExpectedException(typeof(ArgumentException))]
-    public void Test_constructor_throwsError(float x, float y, float radius)
+    public void Test_constructor_throwsError()
+    {
+        Circle circle = new(10, 10, -10, new(0,0,0));
+    }
+
+    [TestMethod]
+    public void Test_verticesGetter()
     {
         Circle circle = new(x, y, radius, new(0,0,0));
     }

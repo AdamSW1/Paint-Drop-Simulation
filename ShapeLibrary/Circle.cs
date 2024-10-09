@@ -44,10 +44,6 @@ internal class Circle : ICircle
         {
             throw new ArgumentException("Radius cannot be negative");
         }
-        if (X < 0 || Y < 0)
-        {
-            throw new ArgumentException("X and Y positions cannot be less than 0");
-        }
         Center = new Vector(X, Y);
         Radius = radius;
         Colour = colour;
