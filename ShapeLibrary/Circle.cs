@@ -13,7 +13,7 @@ internal class Circle : ICircle
 
     public Vector Center { get; }
 
-    private const int points = 6;
+    private const int points = 200;
 
     private Vector[] _vertices;
     public Vector[] Vertices
@@ -43,10 +43,6 @@ internal class Circle : ICircle
         if(radius < 0)
         {
             throw new ArgumentException("Radius cannot be negative");
-        }
-        if (X < 0 || Y < 0)
-        {
-            throw new ArgumentException("X and Y positions cannot be less than 0");
         }
         Center = new Vector(X, Y);
         Radius = radius;
