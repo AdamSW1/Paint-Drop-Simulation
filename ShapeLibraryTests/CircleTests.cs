@@ -34,7 +34,22 @@ public class CircleTests
     [TestMethod]
     public void Test_verticesGetter()
     {
+        float x = 10;
+        float y = 10;
+        float radius = 50;
+
         Circle circle = new(x, y, radius, new(0,0,0));
+
+        float expectedFirstX = 60f;
+        float expectedFirstY = 10f;
+
+        float expectedLastX = 59.97f;
+        float expectedLastY = 8.42f;
+
+        Assert.AreEqual(expectedFirstX, circle.Vertices[0].X, 0.1);
+        Assert.AreEqual(expectedFirstY, circle.Vertices[0].Y, 0.1);
+        Assert.AreEqual(expectedLastX, circle.Vertices[199].X, 0.1);
+        Assert.AreEqual(expectedLastY, circle.Vertices[199].Y, 0.1);
     }
 }
 
