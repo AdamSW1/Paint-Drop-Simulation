@@ -1,15 +1,22 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DrawingLibrary.Graphics;
+using DrawingLibrary.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace PaintDrops;
 
-public class Game1 : Game
+public class PaintDropsGame : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Screen _screen;
+    private MouseState _previous = Mouse.GetState();
+    private MouseState _current = Mouse.GetState();
+    private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
+    private ICustomMouse customMouse = CustomMouse._instance;
 
-    public Game1()
+    public PaintDropsGame()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -42,7 +49,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        _screen.Set();
 
         // TODO: Add your drawing code here
 
