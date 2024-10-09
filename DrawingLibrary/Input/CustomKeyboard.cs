@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DrawingLibrary.Input
 {
-    public class CustomKeyboard : ICustomKeyboard
+    public sealed class CustomKeyboard : ICustomKeyboard
     {
-        KeyboardState _previous;
-        KeyboardState _current;
+        private KeyboardState _previous;
+        private KeyboardState _current;
 
         private static CustomKeyboard Instance;
         public static CustomKeyboard _instance
@@ -25,7 +25,7 @@ namespace DrawingLibrary.Input
             }
         }
 
-        public CustomKeyboard() { 
+        private CustomKeyboard() { 
             _previous = Keyboard.GetState();
             _current = Keyboard.GetState();
         }

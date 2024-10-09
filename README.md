@@ -2,8 +2,10 @@
 
 ## Overview
 
-The app is a simulation of paint drops mixing colours
-
+The app is a simulation of paint drops mixing colours  
+left clicking in the app will create a new circle  
+and right clicking will create a square shape  
+middle click will clear all colours on the screen
 
 ## Setup
 

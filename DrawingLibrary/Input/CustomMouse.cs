@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DrawingLibrary.Input
 {
-    public class CustomMouse:ICustomMouse
+    public sealed class CustomMouse:ICustomMouse
     {
-        MouseState _previous;
-        MouseState _current;
+        private MouseState _previous;
+        private MouseState _current;
 
         private static CustomMouse Instance;
         public static CustomMouse _instance
@@ -29,7 +29,7 @@ namespace DrawingLibrary.Input
 
         public Point WindowPosition => _current.Position;
 
-        public CustomMouse() { 
+        private CustomMouse() { 
             _previous = Mouse.GetState();
             _current = Mouse.GetState();
         }
