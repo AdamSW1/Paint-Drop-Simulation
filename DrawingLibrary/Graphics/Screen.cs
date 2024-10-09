@@ -4,7 +4,7 @@ using System;
 namespace DrawingLibrary.Graphics;
 public class Screen : IScreen
 {
-    RenderTarget2D RenderTarget;
+    private RenderTarget2D RenderTarget;
 
     public Screen(RenderTarget2D target)
     {
@@ -13,9 +13,9 @@ public class Screen : IScreen
         Width = RenderTarget.Width;
     }
 
-    public int Height { get; set; }
+    public int Height { get; }
 
-    public int Width { get; set; }
+    public int Width { get; }
 
     public Rectangle CalculateDestinationRectangle()
     {
@@ -48,7 +48,7 @@ public class Screen : IScreen
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        RenderTarget?.Dispose();
     }
 
     public void Present(ISpritesRenderer spritesRenderer, bool textureFiltering = true)
