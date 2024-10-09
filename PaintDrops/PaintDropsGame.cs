@@ -18,8 +18,8 @@ public class PaintDropsGame : Game
     private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
     private ICustomMouse customMouse = CustomMouse._instance;
 
-    private List<ICircle> _circles;
-    private List<IRectangle> _rectangles;
+    private List<ICircle> _circles = new();
+    private List<IRectangle> _rectangles = new();
 
     public PaintDropsGame()
     {
@@ -47,10 +47,27 @@ public class PaintDropsGame : Game
 
     protected override void Update(GameTime gameTime)
     {
+        customMouse.Update();
+        customKeyboard.Update();
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        if (customKeyboard.IsKeyClicked(Keys.Escape))
+        {
+            this.Exit();
+        }
+
+        Vector2? mousePos = customMouse.GetScreenPosition(_screen);
+
+        if(mousePos is not null && customMouse.IsLeftButtonClicked())
+        {
+            ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, new Colour(255, 0, 0));
+            _circles.Add(circle);
+        }
+        if (mousePos is not null && customMouse.IsRightButtonClicked()) {
+            IRectangle rectangle = ShapesFactory.CreateRectangle(mousePos.Value.X, mousePos.Value.Y, 50, 100, new Colour(0, 0, 255));
+            _rectangles.Add(rectangle);
+        }
 
         base.Update(gameTime);
     }
@@ -62,7 +79,13 @@ public class PaintDropsGame : Game
         shapesRenderer.Begin();
         spritesRenderer.Begin(true);
 
-        // TODO: Add your drawing code here
+        foreach (ICircle circle in _circles) { 
+            shapesRenderer.DrawShape(circle);
+        }
+
+        foreach (IRectangle rectangle in _rectangles) { 
+            shapesRenderer.DrawShape(rectangle);
+        }
         shapesRenderer.End();
         spritesRenderer.End();
         _screen.UnSet();
