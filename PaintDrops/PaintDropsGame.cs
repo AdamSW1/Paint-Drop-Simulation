@@ -65,8 +65,13 @@ public class PaintDropsGame : Game
             _circles.Add(circle);
         }
         if (mousePos is not null && customMouse.IsRightButtonClicked()) {
-            IRectangle rectangle = ShapesFactory.CreateRectangle(mousePos.Value.X, mousePos.Value.Y, 50, 100, new Colour(0, 0, 255));
+            IRectangle rectangle = ShapesFactory.CreateRectangle(mousePos.Value.X, mousePos.Value.Y, 50, 50, new Colour(0, 0, 255));
             _rectangles.Add(rectangle);
+        }
+
+        if (customMouse.IsMiddleButtonClicked()) {
+            _rectangles.Clear();
+            _circles.Clear();
         }
 
         base.Update(gameTime);
