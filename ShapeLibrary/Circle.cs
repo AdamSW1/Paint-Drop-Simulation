@@ -13,7 +13,7 @@ internal class Circle : ICircle
 
     public Vector Center { get; }
 
-    private const int points = 6;
+    private const int points = 200;
 
     private Vector[] _vertices;
     public Vector[] Vertices
