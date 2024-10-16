@@ -37,6 +37,11 @@ public struct Vector
         return new Vector(v1.X * scalar, v1.Y * scalar);
     }
 
+    public static Vector operator *(float scalar, Vector v1)
+    {
+        return new Vector(v1.X * scalar, v1.Y * scalar);
+    }
+
     public static Vector operator /(Vector v1, float scalar){
 
         if (scalar == 0)
