@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("PaintDropSimulationTests")]
 namespace PaintDropSimulation
 {
     internal class PaintDrop : IPaintDrop
@@ -13,11 +15,13 @@ namespace PaintDropSimulation
 
         public PaintDrop(ICircle circle)
         {
-            Circle = circle;
+            Circle = circle ?? throw new ArgumentNullException("circle cannot be null");
         }
 
         public void Marble(IPaintDrop other)
         {
+            if(other is null) throw new ArgumentNullException("other drop cannot be null");
+
             Vector center = other.Circle.Center;
             float radius = other.Circle.Radius;
 

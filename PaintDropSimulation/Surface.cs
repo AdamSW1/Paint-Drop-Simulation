@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("PaintDropSimulationTests")]
 namespace PaintDropSimulation
 {
     internal class Surface : ISurface
@@ -26,6 +28,8 @@ namespace PaintDropSimulation
 
         public void AddPaintDrop(IPaintDrop drop)
         {
+            if (drop is null) throw new ArgumentNullException(nameof(drop), "Drop cannot be null");
+
             Drops.Add(drop);
 
             foreach (IPaintDrop d in Drops)
