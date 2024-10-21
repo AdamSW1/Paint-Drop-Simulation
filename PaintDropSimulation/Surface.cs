@@ -11,7 +11,7 @@ namespace PaintDropSimulation
         public int Width { get; }
 
         public int Height { get; }
-        public List<IPaintDrop> Drops { get; }
+        public List<IPaintDrop> Drops { get; } = new();
 
         public Surface(int width, int height)
         {
