@@ -26,7 +26,7 @@ namespace PaintDropSimulation
                 Vector substracted = Circle.Vertices[i] - center;
                 float radiusSquared = (float)Math.Pow(radius, 2);
                 float magnitudeSubstracted = Vector.Magnitude(substracted);
-                float discriminant = (float)Math.Sqrt(1 + (radiusSquared / magnitudeSubstracted));
+                float discriminant = (float)Math.Sqrt(1 + (radiusSquared / Math.Pow(magnitudeSubstracted, 2)));
                 Vector multiplied = substracted * discriminant;
                 Circle.Vertices[i] = center + multiplied;
             }
