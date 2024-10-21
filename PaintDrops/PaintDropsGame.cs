@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PaintDropSimulation;
 using ShapeLibrary;
-using System.Collections.Generic;
+using System;
 
 namespace PaintDrops;
 
@@ -63,14 +63,18 @@ public class PaintDropsGame : Game
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
             if(mousePos is not null)
             {
-                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 10, new Colour(255, 0, 0));
+                int red = GenerateRandomColour();
+                int green = GenerateRandomColour();
+                int blue = GenerateRandomColour();
+                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, new Colour(red, green, blue));
                 IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
                 surface.AddPaintDrop(drop);
             }
         }
-        if (customMouse.IsRightButtonClicked()) {
+        if (customMouse.IsRightButtonClicked())
+        {
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
-            if(mousePos is not null)
+            if (mousePos is not null)
             {
                 surface.Drops.Clear();
 
@@ -78,8 +82,15 @@ public class PaintDropsGame : Game
 
         }
 
-
         base.Update(gameTime);
+    }
+
+    private static int GenerateRandomColour()
+    {
+        Random rand = new Random();
+        //maxValue random.Next() is not inclusive
+        int colour = rand.Next(0, 256);
+        return colour;
     }
 
     protected override void Draw(GameTime gameTime)
@@ -89,7 +100,7 @@ public class PaintDropsGame : Game
         shapesRenderer.Begin();
         spritesRenderer.Begin(true);
 
-        foreach( IPaintDrop drop in surface.Drops )
+        foreach( IPaintDrop drop in surface.Drops)
         {
             shapesRenderer.DrawShape(drop.Circle);
         }
