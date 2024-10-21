@@ -28,6 +28,8 @@ namespace PaintDropSimulation
 
         public void AddPaintDrop(IPaintDrop drop)
         {
+            if (drop is null) throw new ArgumentNullException(nameof(drop), "Drop cannot be null");
+
             Drops.Add(drop);
 
             foreach (IPaintDrop d in Drops)
