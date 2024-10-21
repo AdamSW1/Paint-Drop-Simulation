@@ -20,6 +20,8 @@ namespace PaintDropSimulation
 
         public void Marble(IPaintDrop other)
         {
+            if(other is null) throw new ArgumentNullException("other drop cannot be null");
+
             Vector center = other.Circle.Center;
             float radius = other.Circle.Radius;
 
