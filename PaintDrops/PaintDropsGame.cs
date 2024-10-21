@@ -19,8 +19,6 @@ public class PaintDropsGame : Game
     private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
     private ICustomMouse customMouse = CustomMouse._instance;
 
-    private List<ICircle> _circles = new();
-    private List<IRectangle> _rectangles = new();
     private ISurface surface;
 
     public PaintDropsGame()
@@ -60,22 +58,18 @@ public class PaintDropsGame : Game
             this.Exit();
         }
 
-        Vector2? mousePos = customMouse.GetScreenPosition(_screen);
-
-        if(mousePos is not null && customMouse.IsLeftButtonClicked())
+        if (customMouse.IsLeftButtonClicked())
         {
-            ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, new Colour(255, 0, 0));
-            _circles.Add(circle);
+            Vector2? mousePos = customMouse.GetScreenPosition(_screen);
+            ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 10, new Colour(255, 0, 0));
+            IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
+            surface.AddPaintDrop(drop);
         }
-        if (mousePos is not null && customMouse.IsRightButtonClicked()) {
-            IRectangle rectangle = ShapesFactory.CreateRectangle(mousePos.Value.X, mousePos.Value.Y, 50, 50, new Colour(0, 0, 255));
-            _rectangles.Add(rectangle);
+        if (customMouse.IsRightButtonClicked()) {
+            Vector2? mousePos = customMouse.GetScreenPosition(_screen);
+            surface.Drops.Clear();
         }
 
-        if (customMouse.IsMiddleButtonClicked()) {
-            _rectangles.Clear();
-            _circles.Clear();
-        }
 
         base.Update(gameTime);
     }
@@ -87,13 +81,11 @@ public class PaintDropsGame : Game
         shapesRenderer.Begin();
         spritesRenderer.Begin(true);
 
-        foreach (ICircle circle in _circles) { 
-            shapesRenderer.DrawShape(circle);
+        foreach( IPaintDrop drop in surface.Drops )
+        {
+            shapesRenderer.DrawShape(drop.Circle);
         }
 
-        foreach (IRectangle rectangle in _rectangles) { 
-            shapesRenderer.DrawShape(rectangle);
-        }
         shapesRenderer.End();
         spritesRenderer.End();
         _screen.UnSet();
