@@ -61,13 +61,21 @@ public class PaintDropsGame : Game
         if (customMouse.IsLeftButtonClicked())
         {
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
-            ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 10, new Colour(255, 0, 0));
-            IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
-            surface.AddPaintDrop(drop);
+            if(mousePos is not null)
+            {
+                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 10, new Colour(255, 0, 0));
+                IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
+                surface.AddPaintDrop(drop);
+            }
         }
         if (customMouse.IsRightButtonClicked()) {
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
-            surface.Drops.Clear();
+            if(mousePos is not null)
+            {
+                surface.Drops.Clear();
+
+            }
+
         }
 
 
