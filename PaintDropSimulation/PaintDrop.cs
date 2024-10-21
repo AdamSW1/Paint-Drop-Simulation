@@ -15,7 +15,7 @@ namespace PaintDropSimulation
 
         public PaintDrop(ICircle circle)
         {
-            Circle = circle;
+            Circle = circle ?? throw new ArgumentNullException("circle cannot be null");
         }
 
         public void Marble(IPaintDrop other)
