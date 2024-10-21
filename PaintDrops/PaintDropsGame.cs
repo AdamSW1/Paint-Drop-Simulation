@@ -3,6 +3,7 @@ using DrawingLibrary.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PaintDropSimulation;
 using ShapeLibrary;
 using System.Collections.Generic;
 
@@ -14,12 +15,13 @@ public class PaintDropsGame : Game
     private SpriteBatch _spriteBatch;
     private ISpritesRenderer spritesRenderer;   
     private IShapesRenderer shapesRenderer;
-    private Screen _screen;
+    private IScreen _screen;
     private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
     private ICustomMouse customMouse = CustomMouse._instance;
 
     private List<ICircle> _circles = new();
     private List<IRectangle> _rectangles = new();
+    private ISurface surface;
 
     public PaintDropsGame()
     {
@@ -34,7 +36,8 @@ public class PaintDropsGame : Game
         // TODO: Add your initialization logic here
         spritesRenderer = new SpritesRenderer(GraphicsDevice);
         shapesRenderer = new ShapesRenderer(GraphicsDevice);
-        _screen = new(new RenderTarget2D(GraphicsDevice, 640, 480));
+        _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
+        surface = PaintDropSimulationFactory.CreateSurface(640, 480);
         base.Initialize();
     }
 
