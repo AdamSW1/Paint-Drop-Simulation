@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeLibrary", "ShapeLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeLibraryTests", "ShapeLibraryTests\ShapeLibraryTests.csproj", "{1D96243E-1063-439D-AE02-1131DFBE453D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintDropTests", "PaintDropTests\PaintDropTests.csproj", "{11A2905D-4357-491A-8ED6-674E10F1153A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{1D96243E-1063-439D-AE02-1131DFBE453D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D96243E-1063-439D-AE02-1131DFBE453D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D96243E-1063-439D-AE02-1131DFBE453D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A2905D-4357-491A-8ED6-674E10F1153A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A2905D-4357-491A-8ED6-674E10F1153A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A2905D-4357-491A-8ED6-674E10F1153A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A2905D-4357-491A-8ED6-674E10F1153A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
