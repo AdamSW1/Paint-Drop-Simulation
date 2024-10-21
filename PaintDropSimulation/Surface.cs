@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: InternalsVisibleTo("PaintDropTests")]
+[assembly: InternalsVisibleTo("PaintDropSimulationTests")]
 namespace PaintDropSimulation
 {
     internal class Surface : ISurface
