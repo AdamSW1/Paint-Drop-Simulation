@@ -15,12 +15,12 @@ namespace PaintDropSimulation
 
         public PaintDrop(ICircle circle)
         {
-            Circle = circle ?? throw new ArgumentNullException("circle cannot be null");
+            Circle = circle ?? throw new ArgumentNullException(nameof(circle), "circle cannot be null");
         }
 
         public void Marble(IPaintDrop other)
         {
-            if(other is null) throw new ArgumentNullException("other drop cannot be null");
+            if(other is null) throw new ArgumentNullException(nameof(other), "other drop cannot be null");
 
             Vector center = other.Circle.Center;
             float radius = other.Circle.Radius;
