@@ -52,5 +52,18 @@ namespace PaintDropSimulationTests
             Assert.AreEqual(expectedX, dropA.Circle.Vertices[0].X, 0.01);
             Assert.AreEqual(expectedY, dropA.Circle.Vertices[0].Y, 0.01);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Test_marbling_throwsError()
+        {
+            ICircle circleA = new Circle(200, 200, 50, new Colour(0, 0, 0));
+
+            PaintDrop dropA = new PaintDrop(circleA);
+            PaintDrop dropB = null!;
+
+            dropA.Marble(dropB);
+
+        }
     }
 }
