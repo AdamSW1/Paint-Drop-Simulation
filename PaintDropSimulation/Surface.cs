@@ -30,12 +30,12 @@ namespace PaintDropSimulation
         {
             if (drop is null) throw new ArgumentNullException(nameof(drop), "Drop cannot be null");
 
-            Drops.Add(drop);
-
             foreach (IPaintDrop d in Drops)
             {
                 d.Marble(drop);
             }
+
+            Drops.Add(drop);
         }
     }
 }
