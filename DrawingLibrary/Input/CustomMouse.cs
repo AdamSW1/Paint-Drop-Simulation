@@ -52,11 +52,8 @@ namespace DrawingLibrary.Input
             float posX = (xOffset * screenWidth) / scaledScreen.Width;
             float posY = (yOffset * screenHeight) / scaledScreen.Height;
 
-            var absX = Math.Abs(posX);
-            var absY = Math.Abs(posY);
 
-
-            if (absX > screenWidth || absX < 0 || absY > screenHeight || absY < 0) {
+            if (posX > screenWidth || posX < 0 || posY > screenHeight || posY < 0) {
                 return null;
             }
 
