@@ -18,6 +18,7 @@ public class PhyllotaxisPatternGeneration : IPatternGenerator
 
     public Vector? CalculatePatternPoint(ISurface surface)
     {
+        if(surface == null) throw new ArgumentNullException(nameof(surface),"surface cannot be null");
         int centerX = surface.Width / 2;
         int centerY = surface.Height / 2;
 
