@@ -63,10 +63,7 @@ public class PaintDropsGame : Game
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
             if(mousePos is not null)
             {
-                int red = GenerateRandomColour();
-                int green = GenerateRandomColour();
-                int blue = GenerateRandomColour();
-                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, new Colour(red, green, blue));
+                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, GetRandomColourObject());
                 IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
                 surface.AddPaintDrop(drop);
             }
@@ -85,12 +82,21 @@ public class PaintDropsGame : Game
         base.Update(gameTime);
     }
 
-    private static int GenerateRandomColour()
+    private int GenerateRandomColour()
     {
         Random rand = new Random();
         //maxValue random.Next() is not inclusive
         int colour = rand.Next(0, 256);
         return colour;
+    }
+
+    private Colour GetRandomColourObject()
+    {
+        int red = GenerateRandomColour();
+        int green = GenerateRandomColour();
+        int blue = GenerateRandomColour();
+
+        return new Colour(red, green, blue);
     }
 
     protected override void Draw(GameTime gameTime)
