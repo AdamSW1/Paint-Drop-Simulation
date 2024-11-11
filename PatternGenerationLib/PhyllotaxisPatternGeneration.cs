@@ -10,9 +10,11 @@ namespace PatternGenerationLib;
 public class PhyllotaxisPatternGeneration : IPatternGenerator
 {
     private int _index = 0;
+    private int MaxPoints;
     private const int scalingFactor = 15;
     private const float goldenAngle = 137.5f;
 
+    public PhyllotaxisPatternGeneration() { }
 
     public Vector? CalculatePatternPoint(ISurface surface)
     {
