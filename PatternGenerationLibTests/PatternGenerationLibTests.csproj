@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PatternGenerationLib\PatternGenerationLib.csproj" />
+    <ProjectReference Include="..\PaintDropSimulation\PaintDropSimulation.csproj" />
   </ItemGroup>
 
 </Project>

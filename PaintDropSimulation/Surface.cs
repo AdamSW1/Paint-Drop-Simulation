@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 [assembly: InternalsVisibleTo("PaintDropSimulationTests")]
+[assembly: InternalsVisibleTo("PatternGenerationLibTests")]
 namespace PaintDropSimulation
 {
     internal class Surface : ISurface
