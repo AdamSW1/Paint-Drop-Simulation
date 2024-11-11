@@ -2,10 +2,12 @@
 
 ## Overview
 
-The app is a simulation of paint drops mixing colours  
-left clicking in the app will create a new circle  
-and right clicking will create a square shape  
-middle click will clear all colours on the screen
+The app is a simulation of paint drops with a pattern generator  
+
+- left clicking in the app will add a new drop  
+- middle click will clear all colours on the screen  
+- pressing `m` will start a pattern generation algorithm  
+- and pressing `e` will end the pattern generation  
 
 ## Setup
 
