@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShapeLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,8 @@ namespace PaintDropSimulation
         public int Height { get; }
         public List<IPaintDrop> Drops { get; } = new();
 
+        public event CalculatePatternPoint? OnCalculatePatternPoint;
+
         public Surface(int width, int height)
         {
             if(width <= 0 || height <= 0)
@@ -26,6 +29,7 @@ namespace PaintDropSimulation
             Height = height;
         }
 
+
         public void AddPaintDrop(IPaintDrop drop)
         {
             if (drop is null) throw new ArgumentNullException(nameof(drop), "Drop cannot be null");
@@ -36,6 +40,22 @@ namespace PaintDropSimulation
             }
 
             Drops.Add(drop);
+        }
+
+        public void GeneratePaintDropPattern(int radius, Colour colour)
+        {
+            Vector? newDropVector = OnCalculatePatternPoint?.Invoke(this);
+
+            if (!newDropVector.HasValue)
+            {
+                throw new ArgumentNullException(nameof(newDropVector), "vector cannot be null");
+            }
+
+            ICircle circle = ShapesFactory.CreateCircle(newDropVector.Value.X, newDropVector.Value.Y, radius, colour);
+
+            IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
+
+            AddPaintDrop(drop);
         }
     }
 }

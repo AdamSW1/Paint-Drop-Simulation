@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PaintDropSimulation;
+using PatternGenerationLib;
 using ShapeLibrary;
 using System;
 
@@ -18,6 +19,9 @@ public class PaintDropsGame : Game
     private IScreen _screen;
     private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
     private ICustomMouse customMouse = CustomMouse._instance;
+    private PhyllotaxisPatternGeneration patternGeneration;
+    private Boolean generatePattern = false;
+
 
     private ISurface surface;
 
@@ -36,6 +40,9 @@ public class PaintDropsGame : Game
         shapesRenderer = new ShapesRenderer(GraphicsDevice);
         _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
         surface = PaintDropSimulationFactory.CreateSurface(640, 480);
+
+        patternGeneration = new();
+        surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         base.Initialize();
     }
 
@@ -50,6 +57,7 @@ public class PaintDropsGame : Game
     {
         customMouse.Update();
         customKeyboard.Update();
+
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
@@ -63,34 +71,57 @@ public class PaintDropsGame : Game
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
             if(mousePos is not null)
             {
-                int red = GenerateRandomColour();
-                int green = GenerateRandomColour();
-                int blue = GenerateRandomColour();
-                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, new Colour(red, green, blue));
+                ICircle circle = ShapesFactory.CreateCircle(mousePos.Value.X, mousePos.Value.Y, 50, GetRandomColourObject());
                 IPaintDrop drop = PaintDropSimulationFactory.CreatePaintDrop(circle);
                 surface.AddPaintDrop(drop);
             }
         }
+
         if (customMouse.IsRightButtonClicked())
         {
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
             if (mousePos is not null)
             {
                 surface.Drops.Clear();
-
+                patternGeneration = new();
+                surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
             }
 
+        }
+
+        if (customKeyboard.IsKeyClicked(Keys.M))
+        {
+            generatePattern = true;
+        }
+
+        if (customKeyboard.IsKeyClicked(Keys.E))
+        {
+            generatePattern = false;
+        }
+
+        if (generatePattern)
+        {
+            surface.GeneratePaintDropPattern(10, GetRandomColourObject());
         }
 
         base.Update(gameTime);
     }
 
-    private static int GenerateRandomColour()
+    private int GenerateRandomColour()
     {
         Random rand = new Random();
         //maxValue random.Next() is not inclusive
         int colour = rand.Next(0, 256);
         return colour;
+    }
+
+    private Colour GetRandomColourObject()
+    {
+        int red = GenerateRandomColour();
+        int green = GenerateRandomColour();
+        int blue = GenerateRandomColour();
+
+        return new Colour(red, green, blue);
     }
 
     protected override void Draw(GameTime gameTime)
