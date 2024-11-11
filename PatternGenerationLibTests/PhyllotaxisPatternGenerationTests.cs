@@ -29,4 +29,13 @@ public class PhyllotaxisPatternGenerationTests
 
     }
 
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TestPointCalculation_NullSurface_throwsArgumentNullException()
+    {
+        PhyllotaxisPatternGeneration patternGeneration = new();
+        Surface? surface = null;
+        patternGeneration.CalculatePatternPoint(surface!);
+    }
+
 }
