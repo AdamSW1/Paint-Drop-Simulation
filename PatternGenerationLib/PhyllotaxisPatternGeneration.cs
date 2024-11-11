@@ -24,7 +24,7 @@ public class PhyllotaxisPatternGeneration : IPatternGenerator
 
         float radius = scalingFactor * MathF.Sqrt(_index);
 
-        float theta = _index * goldenAngle;
+        float theta = _index * (MathF.PI / 180 * goldenAngle);
 
         float dropX = centerX + (radius * MathF.Cos(theta));
 
