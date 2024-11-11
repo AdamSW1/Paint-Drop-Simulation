@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShapeLibrary\ShapeLibrary.csproj" />
+    <ProjectReference Include="..\PatternGenerationLib\PatternGenerationLib.csproj" />
   </ItemGroup>
 
 </Project>
