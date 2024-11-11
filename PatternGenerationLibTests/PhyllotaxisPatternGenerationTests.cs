@@ -7,7 +7,7 @@ namespace PatternGenerationLibTests;
 public class PhyllotaxisPatternGenerationTests
 {
     [TestMethod]
-    public void TestPatternGeneration_returnsCorrectPoints()
+    public void TestPointCalculation_returnsCorrectPoints()
     {
         PhyllotaxisPatternGeneration patternGeneration = new();
 
