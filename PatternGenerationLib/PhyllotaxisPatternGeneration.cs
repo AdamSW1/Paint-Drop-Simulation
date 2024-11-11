@@ -34,5 +34,10 @@ public class PhyllotaxisPatternGeneration : IPatternGenerator
 
         return new Vector(dropX, dropY);
     }
+
+    public void ResetIndex()
+    {
+        _index = 0;
+    }
 }
 

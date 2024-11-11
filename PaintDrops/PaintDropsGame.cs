@@ -83,8 +83,7 @@ public class PaintDropsGame : Game
             if (mousePos is not null)
             {
                 surface.Drops.Clear();
-                patternGeneration = new();
-                surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+                patternGeneration.ResetIndex();
             }
 
         }
