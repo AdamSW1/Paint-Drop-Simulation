@@ -24,5 +24,10 @@ namespace ShapeLibrary
         /// The height of the rectangle
         /// </summary>
         public float Height { get; }
+
+        ///<summary>
+        /// Computes the intersection of this rectangle with the input one
+        ///</summary>
+        public bool Intersect(IRectangle o);
     }
 }
