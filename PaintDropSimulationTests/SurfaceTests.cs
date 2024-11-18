@@ -98,6 +98,46 @@ public class SurfaceTests
         Assert.AreEqual(0, surface.Drops.Count);
     }
 
+    [TestMethod]
+    public void Test_dropInsideBorder_IsAdded()
+    {
+        Surface surface = new(10, 10);
+
+        ICircle circleA = new Circle(5, 5, 2, new Colour(0, 0, 0));
+        PaintDrop dropA = new PaintDrop(circleA);
+
+        surface.AddPaintDrop(dropA);
+
+        Assert.AreEqual(1, surface.Drops.Count);
+
+    }
+
+    [TestMethod]
+    public void Test_dropOnBorder_IsAdded()
+    {
+        Surface surface = new(10, 10);
+
+        ICircle circleA = new Circle(10, 10, 10, new Colour(0, 0, 0));
+        PaintDrop dropA = new PaintDrop(circleA);
+
+        surface.AddPaintDrop(dropA);
+
+        Assert.AreEqual(1, surface.Drops.Count);
+    }
+
+    [TestMethod]
+    public void Test_dropOutsideBorder_isRemoved()
+    {
+        Surface surface = new(10, 10);
+
+        ICircle circleA = new Circle(200, 200, 10, new Colour(0, 0, 0));
+        PaintDrop dropA = new PaintDrop(circleA);
+
+        surface.AddPaintDrop(dropA);
+
+        Assert.AreEqual(0, surface.Drops.Count);
+
+    }
 
 }
 
