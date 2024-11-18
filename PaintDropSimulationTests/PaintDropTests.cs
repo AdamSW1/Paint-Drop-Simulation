@@ -65,5 +65,21 @@ namespace PaintDropSimulationTests
             dropA.Marble(dropB);
 
         }
+
+        [TestMethod]
+        public void Test_boundingBox_updates()
+        {
+            ICircle circleA = new Circle(200, 200, 50, new Colour(0, 0, 0));
+            ICircle circleB = new Circle(280, 200, 50, new Colour(0, 0, 0));
+
+            PaintDrop dropA = new(circleA);
+            PaintDrop dropB = new(circleB);
+
+            IRectangle previousBoundingBox = dropA.BoundingBox;
+
+            dropA.Marble(dropB);
+
+            CollectionAssert.AreNotEquivalent(previousBoundingBox.Vertices, dropA.BoundingBox.Vertices);
+        }
     }
 }

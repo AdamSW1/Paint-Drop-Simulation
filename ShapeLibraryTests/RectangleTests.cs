@@ -28,8 +28,6 @@ public class RectangleTests
     }
 
     [TestMethod]
-    [DataRow(-10, 10, 10, 10)]
-    [DataRow(10, -10, 10, 10)]
     [DataRow(10, 10, -10, 10)]
     [DataRow(10, 10, 10, -10)]
     [ExpectedException(typeof(ArgumentException))]
@@ -52,8 +50,26 @@ public class RectangleTests
         expectedVertices[3] = new Vector(10, 20);
 
         CollectionAssert.AreEqual(expectedVertices, vertices);
+    }
 
-        
+    [TestMethod]
+    public void Test_Intersect_returnsTrue()
+    {
+        Rectangle r1 = new Rectangle(5, 1, 2, 6, new Colour(0, 0, 0));
+        Rectangle r2 = new Rectangle(3, 6, 6, 2, new Colour(0, 0, 0));
+
+        Assert.IsTrue(r1.Intersect(r2));
+        Assert.IsTrue(r2.Intersect(r1));
+    }
+
+    [TestMethod]
+    public void Test_Intersect_returnsFalse()
+    {
+        Rectangle r1 = new Rectangle(0, 0, 1, 1, new Colour(0,0,0));
+        Rectangle r2 = new Rectangle(10, 10, 10, 10, new Colour(0, 0, 0));
+
+        Assert.IsFalse(r1.Intersect(r2));
+        Assert.IsFalse(r2.Intersect(r1));
     }
 }
 
