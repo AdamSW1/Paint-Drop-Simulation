@@ -41,7 +41,7 @@ public class PaintDropsGame : Game
         _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
         surface = PaintDropSimulationFactory.CreateSurface(640, 480);
 
-        patternGeneration = PatternGenerationFactory.CreatePattern();
+        patternGeneration = PatternGenerationFactory.CreatePattern("phyllotaxis");
         surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         base.Initialize();
     }
