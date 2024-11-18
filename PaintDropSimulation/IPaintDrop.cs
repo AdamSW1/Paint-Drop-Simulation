@@ -16,6 +16,11 @@ namespace PaintDropSimulation
         ICircle Circle { get; }
 
         /// <summary>
+        /// Represents the bounding box around the paitn drop
+        /// </summary>
+        IRectangle BoundingBox {  get; }
+
+        /// <summary>
         /// Performs the marbling algorithm
         /// </summary>
         /// <param name="other">The other paintdrop to be combined with</param>
