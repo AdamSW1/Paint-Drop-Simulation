@@ -53,5 +53,25 @@ internal class Rectangle : IRectangle
         Height = height;
         Colour = colour;
     }
+
+    public bool Intersect(IRectangle o)
+    {
+        if( o is null)
+        {
+            throw new ArgumentNullException(nameof(o), "Other rectangle cannot be null");
+        }
+        float xMax = MathF.Max(this.X, o.X);
+        float xMinRight = MathF.Min(this.X + this.Width, o.X + o.Width);
+
+        float yMax = MathF.Max(this.Y, o.Y);
+        float yMinBottom = MathF.Min(this.Y + this.Height, o.Y + o.Height);
+
+        if (xMax <= xMinRight && yMinBottom >= yMax)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 
