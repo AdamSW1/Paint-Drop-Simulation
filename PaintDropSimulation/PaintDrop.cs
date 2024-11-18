@@ -13,6 +13,15 @@ namespace PaintDropSimulation
     {
         public ICircle Circle { get; }
 
+        private IRectangle? _boundingBox;
+        public IRectangle BoundingBox {
+            get
+            {
+                _boundingBox ??= UpdateBoundingBox();
+                return _boundingBox;
+            }
+        }
+
         public PaintDrop(ICircle circle)
         {
             Circle = circle ?? throw new ArgumentNullException(nameof(circle), "circle cannot be null");
@@ -34,6 +43,21 @@ namespace PaintDropSimulation
                 Vector multiplied = substracted * discriminant;
                 Circle.Vertices[i] = center + multiplied;
             }
+            _boundingBox = UpdateBoundingBox();
+        }
+
+        private IRectangle UpdateBoundingBox()
+        {
+            float topLeftX = Circle.Vertices.Min(v => v.X);
+            float topLeftY = Circle.Vertices.Min(v => v.Y);
+
+            float bottomRightX = Circle.Vertices.Max(v => v.X);
+            float bottomRightY = Circle.Vertices.Max(v => v.Y);
+
+            float width = bottomRightX - topLeftX;
+            float height = bottomRightY - topLeftY;
+
+            return ShapesFactory.CreateRectangle(topLeftX, topLeftY, width, height, new Colour(0, 0, 0));
         }
     }
 }
