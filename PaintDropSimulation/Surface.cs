@@ -45,11 +45,16 @@ namespace PaintDropSimulation
 
         public void GeneratePaintDropPattern(int radius, Colour colour)
         {
+            if(OnCalculatePatternPoint is null)
+            {
+                throw new ArgumentNullException(nameof(OnCalculatePatternPoint), "Event cannot be null");
+            }
+
             Vector? newDropVector = OnCalculatePatternPoint?.Invoke(this);
 
             if (!newDropVector.HasValue)
             {
-                throw new ArgumentNullException(nameof(newDropVector), "vector cannot be null");
+                return;
             }
 
             ICircle circle = ShapesFactory.CreateCircle(newDropVector.Value.X, newDropVector.Value.Y, radius, colour);

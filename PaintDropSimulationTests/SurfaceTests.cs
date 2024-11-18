@@ -83,8 +83,7 @@ public class SurfaceTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void Test_GeneratePaintDropPattern_nullVector_throwsError()
+    public void Test_GeneratePaintDropPattern_nullVector_doesntAdd()
     {
         Surface surface = new(100, 100);
         Boolean isCalled = false;
@@ -96,6 +95,7 @@ public class SurfaceTests
 
         surface.GeneratePaintDropPattern(5, new Colour(0, 0, 0));
         Assert.IsTrue(isCalled);
+        Assert.AreEqual(0, surface.Drops.Count);
     }
 
 
