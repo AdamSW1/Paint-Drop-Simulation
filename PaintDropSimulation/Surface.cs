@@ -17,6 +17,8 @@ namespace PaintDropSimulation
         public int Height { get; }
         public List<IPaintDrop> Drops { get; } = new();
 
+        public IRectangle Border { get; }
+
         public event CalculatePatternPoint? OnCalculatePatternPoint;
 
         public Surface(int width, int height)
@@ -28,6 +30,9 @@ namespace PaintDropSimulation
 
             Width = width;
             Height = height;
+
+            Border = ShapesFactory.CreateRectangle(x: 0, y: 0 ,width,height, new Colour(0,0,0));
+
         }
 
 
@@ -41,6 +46,10 @@ namespace PaintDropSimulation
             }
 
             Drops.Add(drop);
+
+            Drops.RemoveAll(d => {
+                return !d.BoundingBox.Intersect(Border);
+            });
         }
 
         public void GeneratePaintDropPattern(int radius, Colour colour)
