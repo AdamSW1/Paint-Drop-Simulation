@@ -21,6 +21,7 @@ public class PaintDropsGame : Game
     private ICustomMouse customMouse = CustomMouse._instance;
     private IPatternGenerator patternGeneration;
     private bool generatePattern = false;
+    private string ColourRange = "all";
 
 
     private ISurface surface;
@@ -66,6 +67,18 @@ public class PaintDropsGame : Game
             this.Exit();
         }
 
+        if (customKeyboard.IsKeyClicked(Keys.A)) ColourRange = "any";
+
+        if (customKeyboard.IsKeyClicked(Keys.R)) ColourRange = "red";
+
+        if (customKeyboard.IsKeyClicked(Keys.G)) ColourRange = "green";
+
+        if (customKeyboard.IsKeyClicked(Keys.B)) ColourRange = "blue";
+        
+        if (customKeyboard.IsKeyClicked(Keys.Y)) ColourRange = "yellow";
+
+        if (customKeyboard.IsKeyClicked(Keys.V)) ColourRange = "violet";
+
         if (customMouse.IsLeftButtonClicked())
         {
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
@@ -106,19 +119,44 @@ public class PaintDropsGame : Game
         base.Update(gameTime);
     }
 
-    private int GenerateRandomColour()
+    private static int GenerateRandomColour(int MinValue, int MaxValue)
     {
-        Random rand = new Random();
+        Random rand = new();
         //maxValue random.Next() is not inclusive
-        int colour = rand.Next(0, 256);
+        int colour = rand.Next(MinValue, MaxValue + 1);
         return colour;
     }
 
     private Colour GetRandomColourObject()
     {
-        int red = GenerateRandomColour();
-        int green = GenerateRandomColour();
-        int blue = GenerateRandomColour();
+        int red = GenerateRandomColour(0, 128); 
+        int green = GenerateRandomColour(0, 128);
+        int blue = GenerateRandomColour(0, 128);
+        switch (ColourRange)
+        {
+            case "red":
+                red = GenerateRandomColour(128, 255);
+                break;
+            case "green":
+                green = GenerateRandomColour(128, 255);
+                break;
+            case "blue":
+                blue = GenerateRandomColour(128, 255);
+                break;
+            case "yellow":
+                red = GenerateRandomColour(128, 255);
+                green = GenerateRandomColour(128, 255);
+                break;
+            case "violet":
+                red = GenerateRandomColour(128, 255);
+                blue = GenerateRandomColour(128, 255); 
+                break;
+            default:
+                red = GenerateRandomColour(0, 255);
+                green = GenerateRandomColour(0, 255);
+                blue = GenerateRandomColour(0, 255);
+                break;
+        }
 
         return new Colour(red, green, blue);
     }
