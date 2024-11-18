@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PatternGenerationLib;
-public class PhyllotaxisPatternGeneration : IPatternGenerator
+internal class PhyllotaxisPatternGeneration : IPatternGenerator
 {
     private int _index = 0;
     private int MaxPoints;
@@ -29,6 +29,12 @@ public class PhyllotaxisPatternGeneration : IPatternGenerator
         float dropX = centerX + (radius * MathF.Cos(theta));
 
         float dropY = centerY + (radius * MathF.Sin(theta));
+
+
+        if (dropX > surface.Width || dropX < 0 || dropY > surface.Height || dropY < 0)
+        {
+            return null;
+        }
 
         _index++;
 

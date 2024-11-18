@@ -19,8 +19,8 @@ public class PaintDropsGame : Game
     private IScreen _screen;
     private ICustomKeyboard customKeyboard = CustomKeyboard._instance;
     private ICustomMouse customMouse = CustomMouse._instance;
-    private PhyllotaxisPatternGeneration patternGeneration;
-    private Boolean generatePattern = false;
+    private IPatternGenerator patternGeneration;
+    private bool generatePattern = false;
 
 
     private ISurface surface;
@@ -41,7 +41,7 @@ public class PaintDropsGame : Game
         _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
         surface = PaintDropSimulationFactory.CreateSurface(640, 480);
 
-        patternGeneration = new();
+        patternGeneration = PatternGenerationFactory.CreatePattern();
         surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         base.Initialize();
     }
