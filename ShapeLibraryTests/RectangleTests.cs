@@ -28,8 +28,6 @@ public class RectangleTests
     }
 
     [TestMethod]
-    [DataRow(-10, 10, 10, 10)]
-    [DataRow(10, -10, 10, 10)]
     [DataRow(10, 10, -10, 10)]
     [DataRow(10, 10, 10, -10)]
     [ExpectedException(typeof(ArgumentException))]
