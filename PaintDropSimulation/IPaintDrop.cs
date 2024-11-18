@@ -25,10 +25,5 @@ namespace PaintDropSimulation
         /// </summary>
         /// <param name="other">The other paintdrop to be combined with</param>
         void Marble(IPaintDrop other);
-
-        /// <summary>
-        /// Updates the values of the bounding box field
-        /// </summary>
-        void UpdateBoundingBox();
     }
 }
