@@ -20,6 +20,7 @@ namespace PaintDropSimulation
         /// </summary>
         int Height { get; }
 
+        IRectangle Border { get; }
 
         event CalculatePatternPoint OnCalculatePatternPoint;
 
