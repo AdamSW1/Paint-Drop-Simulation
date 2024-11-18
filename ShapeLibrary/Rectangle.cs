@@ -43,7 +43,7 @@ internal class Rectangle : IRectangle
 
     public Rectangle(float x, float y, float width, float height, Colour colour)
     {
-        if (x < 0 || y < 0 || width < 0 || height < 0)
+        if (width < 0 || height < 0)
         {
             throw new ArgumentException("x,y, width or height cannot be less than 0");
         }
