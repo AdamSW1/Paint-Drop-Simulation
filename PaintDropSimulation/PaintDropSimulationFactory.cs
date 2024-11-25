@@ -10,7 +10,7 @@ namespace PaintDropSimulation
     public static class PaintDropSimulationFactory
     {
         public static IPaintDrop CreatePaintDrop(ICircle circle)
-        {
+        { 
             return new PaintDrop(circle);
         }
 
