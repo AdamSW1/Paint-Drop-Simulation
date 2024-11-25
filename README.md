@@ -19,6 +19,12 @@ This can be changed with several different inputs.
 - pressing `y` will change the paint drops to <span style="color:yellow">yellow</span>.
 - pressing `v` will change the paint drops to <span style="color:violet">violet</span>.
 
+### pattern options
+
+By default the game generates a koch curve
+holding `p` will change this to a phyllotaxis pattern  
+When the game is set to generate a koch curve,
+pressing buttons `1-4` will change the number of iterations the pattern does
 
 ## Setup
 
