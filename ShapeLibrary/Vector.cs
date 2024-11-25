@@ -49,8 +49,9 @@ public struct Vector
 
     public static float Magnitude(Vector v)
     {
-        float squaredX = (float)Math.Pow(v.X, 2);
-        float squaredY = (float)Math.Pow(v.Y, 2);
+        //Math.pow is expensive, for squaring just multiplication is better
+        float squaredX = (float)v.X * v.X;
+        float squaredY = (float)v.Y * v.Y;
 
         return (float)Math.Sqrt(squaredX + squaredY);
     }
