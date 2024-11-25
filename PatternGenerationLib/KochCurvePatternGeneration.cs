@@ -20,7 +20,27 @@ internal class KochCurvePatternGeneration : IPatternGenerator
 
     public Vector? CalculatePatternPoint(ISurface surface)
     {
-        throw new NotImplementedException();
+        if(surface == null) throw new ArgumentNullException(nameof(surface),"surface cannot be null");
+        
+        //On first call, generates all the points needed to 
+        // create the pattern
+        if(_kochPoints.Count == 0)
+        {
+            Vector start = new(0, surface.Height / 3);
+            Vector end = new(surface.Width, surface.Height / 3);
+            _kochPoints = GenerateKochCurvePoints(start, end, _maxIterations);
+        }
+
+        if(_index >= _kochPoints.Count)
+        {
+            return null;
+        }
+
+        // get the next point in the pattern
+        Vector nextPoint = _kochPoints[_index];
+        _index++;
+        return nextPoint;
+
     }
 
     /// <summary>
