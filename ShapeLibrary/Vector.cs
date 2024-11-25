@@ -55,6 +55,19 @@ public struct Vector
         return (float)Math.Sqrt(squaredX + squaredY);
     }
 
+    /*
+     * Instead of getting a magnitude and squaring it later
+     * its more efficient to just have a method that returns the magnitude before
+     * the square root
+     */
+    public static float MagnitudeSquared(Vector v)
+    {
+        float squaredX = (float)v.X * v.X;
+        float squaredY = (float)v.Y * v.Y;
+
+        return (float)squaredX + squaredY;
+    }
+
     public static Vector Normalize(Vector v)
     {
         float mag = Magnitude(v);
