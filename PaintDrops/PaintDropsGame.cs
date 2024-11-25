@@ -1,4 +1,4 @@
-using DrawingLibrary.Graphics;
+﻿using DrawingLibrary.Graphics;
 using DrawingLibrary.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +21,7 @@ public class PaintDropsGame : Game
     private ICustomMouse customMouse = CustomMouse._instance;
     private IPatternGenerator patternGeneration;
     private bool generatePattern = false;
+    private bool doKochCurve = true;
     private string ColourRange = "all";
 
     (int, int) kochPatternOption = (4, 2);
@@ -42,7 +43,6 @@ public class PaintDropsGame : Game
         shapesRenderer = new ShapesRenderer(GraphicsDevice);
         _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
         surface = PaintDropSimulationFactory.CreateSurface(640, 480);
-
         patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
         surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         base.Initialize();
@@ -96,44 +96,9 @@ public class PaintDropsGame : Game
             Vector2? mousePos = customMouse.GetScreenPosition(_screen);
             if (mousePos is not null)
             {
-        //change the pattern to be 1 iteration
-        if (customKeyboard.IsKeyClicked(Keys.D1))
-        {
-            ClearGame();
-            generatePattern = true;
-            kochPatternOption = (1, 10);
-            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
-            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
-        }
+                ClearGame();
+            }
 
-        //change the pattern to be 2 iterations
-        if (customKeyboard.IsKeyClicked(Keys.D2))
-        {
-            ClearGame();
-            generatePattern = true;
-            kochPatternOption = (2, 5);
-            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
-            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
-        }
-
-        //change the pattern to be 3 iteration
-        if (customKeyboard.IsKeyClicked(Keys.D3))
-        {
-            ClearGame();
-            generatePattern = true;
-            kochPatternOption = (3, 3);
-            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
-            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
-        }
-        //change the pattern to be 4 iterations
-        if (customKeyboard.IsKeyClicked(Keys.D4))
-        {
-
-            ClearGame();
-            generatePattern = true;
-            kochPatternOption = (4, 2);
-            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
-            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         }
 
         if (customKeyboard.IsKeyClicked(Keys.M))
@@ -146,8 +111,72 @@ public class PaintDropsGame : Game
             generatePattern = false;
         }
 
+        if (customKeyboard.IsKeyClicked(Keys.P))
+        {
+            doKochCurve = !doKochCurve;
+            if (doKochCurve)
+            {
+                kochPatternOption = (4, 2);
+                surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+                patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
+                surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+            }
+            else
+            {
+                kochPatternOption = (0, 10);
+                surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+                patternGeneration = PatternGenerationFactory.CreatePattern("phyllotaxis");
+                surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+            }
+        }
+
+
+        //change the pattern to be 1 iteration
+        if (doKochCurve && customKeyboard.IsKeyClicked(Keys.D1))
+        {
+            ClearGame();
+            generatePattern = true;
+            kochPatternOption = (1, 10);
+            surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
+            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+        }
+
+        //change the pattern to be 2 iterations
+        if (doKochCurve && customKeyboard.IsKeyClicked(Keys.D2))
+        {
+            ClearGame();
+            generatePattern = true;
+            kochPatternOption = (2, 5);
+            surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
+            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+        }
+
+        //change the pattern to be 3 iteration
+        if (doKochCurve && customKeyboard.IsKeyClicked(Keys.D3))
+        {
+            ClearGame();
+            generatePattern = true;
+            kochPatternOption = (3, 3);
+            surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
+            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+        }
+        //change the pattern to be 4 iterations
+        if (doKochCurve &&  customKeyboard.IsKeyClicked(Keys.D4))
+        {
+            ClearGame();
+            generatePattern = true;
+            kochPatternOption = (4, 2);
+            surface.OnCalculatePatternPoint -= patternGeneration.CalculatePatternPoint;
+            patternGeneration = PatternGenerationFactory.CreatePattern("koch", kochPatternOption.Item1);
+            surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
+        }
+
         if (generatePattern)
-                surface.GeneratePaintDropPattern(kochPatternOption.Item2, GetRandomColourObject());
+        {
+            surface.GeneratePaintDropPattern(kochPatternOption.Item2, GetRandomColourObject());
         }
 
         base.Update(gameTime);
