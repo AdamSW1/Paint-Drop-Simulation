@@ -1,4 +1,4 @@
-﻿using DrawingLibrary.Graphics;
+using DrawingLibrary.Graphics;
 using DrawingLibrary.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,7 +42,7 @@ public class PaintDropsGame : Game
         _screen = new Screen(new RenderTarget2D(GraphicsDevice, 640, 480));
         surface = PaintDropSimulationFactory.CreateSurface(640, 480);
 
-        patternGeneration = PatternGenerationFactory.CreatePattern("phyllotaxis");
+        patternGeneration = PatternGenerationFactory.CreatePattern("koch", 4);
         surface.OnCalculatePatternPoint += patternGeneration.CalculatePatternPoint;
         base.Initialize();
     }
@@ -112,8 +112,7 @@ public class PaintDropsGame : Game
         }
 
         if (generatePattern)
-        {
-            surface.GeneratePaintDropPattern(10, GetRandomColourObject());
+                surface.GeneratePaintDropPattern(2, GetRandomColourObject());
         }
 
         base.Update(gameTime);
