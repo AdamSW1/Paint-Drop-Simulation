@@ -23,6 +23,21 @@ internal class KochCurvePatternGeneration : IPatternGenerator
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// Generates a list of vectors representing each point on the curve. 
+    /// The number of points and overall appearance of the curve depend on the amount
+    /// of iterations done.
+    /// <see href="https://nostarch.com/download/PythonPlayground_SampleChapter1.pdf"/>
+    /// <seealso href="https://natureofcode.com/fractals/#the-koch-curve"/>
+    /// </summary>
+    /// <param name="start">A Vector representing the start point of all the points in the curve</param>
+    /// <param name="end">A Vector representing the end point of all the points in the curve</param>
+    /// <param name="iterations"></param>
+    /// <returns>A list of vectors with all the points in the pattern</returns>
+    private List<Vector> GenerateKochCurvePoints(Vector start, Vector end, int iterations) { 
+    }
+
+
     public void ResetIndex()
     {
         _index = 0;
