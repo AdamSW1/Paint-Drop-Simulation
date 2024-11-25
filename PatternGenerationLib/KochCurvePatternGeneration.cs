@@ -26,8 +26,8 @@ internal class KochCurvePatternGeneration : IPatternGenerator
         // create the pattern
         if(_kochPoints.Count == 0)
         {
-            Vector start = new(0, surface.Height / 3);
-            Vector end = new(surface.Width, surface.Height / 3);
+            Vector start = new(0, surface.Height / 2);
+            Vector end = new(surface.Width, surface.Height / 2);
             _kochPoints = GenerateKochCurvePoints(start, end, _maxIterations);
         }
 
