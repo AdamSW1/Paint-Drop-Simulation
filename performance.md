@@ -18,3 +18,9 @@
 | 3000 x 3000              | 3053           | 1133              |
 | 4000 x 4000              | 3753           | 1264              |
 
+## Results
+
+By optimizing the calls to math.pow I was able to
+significantly reduce the debug and release times.
+on average debug times went down by 47.73605% 
+and release times went down by 72.36675%
